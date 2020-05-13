@@ -29,6 +29,10 @@ a {
   grid-gap: 5px
 }
 
+.navbar-toggler .navbar-toggler-icon {
+  background-color: white
+}
+
 @media(max-width: 1198px) {
   .grid {
     grid-template-columns: repeat(5, 1fr);

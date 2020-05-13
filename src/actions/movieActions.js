@@ -1,7 +1,8 @@
 import {
     FETCH_MOVIES,
     FETCH_MOVIE,
-    FETCH_VIDEO
+    FETCH_VIDEO,
+    SEARCH_MOVIE
 } from './types'
 import axios from 'axios'
 
@@ -31,5 +32,14 @@ export const fetchVideo = id => dispatch => {
         .then(video => dispatch({
             type: FETCH_VIDEO,
             payload: video.data.results
+        }))
+}
+
+export const searchMovie = title => dispatch => {
+    axios.get(`
+    https://api.themoviedb.org/3/search/movie?api_key=4946eaca551508f868de8a08376251af&language=en-US&query=${title}&page=1&include_adult=false`)
+        .then(search => dispatch({
+            type: SEARCH_MOVIE,
+            payload: search.data.results
         }))
 }

@@ -6,12 +6,23 @@ import { fetchVideo } from '../actions/movieActions';
 import Imdb from '../assets/imdb.png';
 import Tomato from '../assets/tomato.png';
 import Meta from '../assets/meta.png';
+import { Redirect } from 'react-router-dom'
 
 class Movie extends Component {
+	state = {
+		movies: []
+	}
 	componentDidMount() {
 		this.props.fetchMovie(this.props.match.params.id);
 		this.props.fetchVideo(this.props.match.params.id);
 	}
+	// componentWillReceiveProps(props) {
+	// 	if(props.movies.length > 0) {
+	// 		console.log(props.movies)
+	// 		this.setState({ movies: props.movies})
+	// 		this.props.history.push()
+	// 	}
+// }
 	render() {
 		if (
 			this.props.movie === undefined ||
@@ -119,7 +130,9 @@ Movie.propTypes = {
 
 const mapStateToProps = state => ({
 	movie: state.movies.movie,
-	video: state.movies.video
+	video: state.movies.video,
+	movies: state.movies.movies,
+	search: state.movies.search
 });
 
 const listColor = {
